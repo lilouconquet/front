@@ -1,4 +1,3 @@
-from typing import ValuesView
 import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
@@ -16,6 +15,9 @@ st.markdown("""# Qui est l'auteur qui aurait pu écrire ce paragraphe ?
 # """)
 
 text_input = st.text_input("""Copiez un paragraphe d'auteur ici""")
+
+length = st.write('Nombre de caractères dans le paragraphe:', len(text_input))
+
 
 prediction = st.button('Prédire')
 
@@ -52,6 +54,3 @@ if prediction == True:
         plt.title("Prédiction du style de l'auteur")
         st.pyplot(fig)
 
-#st.header("""C'est Simone de Beauvoire""")
-#image = Image.open('Simone_de_Beauvoir.png')
-#st.image(image, caption='Simone de Beauvoir', width=200)
