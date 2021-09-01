@@ -15,11 +15,14 @@ st.markdown("""# Qui est l'auteur qui aurait pu écrire ce paragraphe ?
 # """)
 
 text_input = st.text_input("""Copiez un paragraphe d'auteur ici""")
+
 length = st.write('Nombre de caractères dans le paragraphe:', len(text_input))
+
 
 prediction = st.button('Prédire')
 
 if prediction == True:
+
     text_input = '%20'.join(text_input.split(" "))
     response = requests.get(
         f'https://apiamd64-ywkwoqtfqq-ew.a.run.app/predict?paragraph={text_input}',
@@ -36,15 +39,18 @@ if prediction == True:
     images = [image for image in os.listdir(path_folder)]
     max = max(auteurs.values())
 
-    imag1 = Image.open(os.path.join(path_folder, ''.join([max_auteur,
-                                                          '.png'])))
-    st.image(imag1, width=400)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.text(' ')
+        imag1 = Image.open(
+            os.path.join(path_folder, ''.join([max_auteur, '.png'])))
+        st.image(imag1, width=400)
 
-    fig = plt.figure(figsize=(5, 5))
+    with col2:
+        fig = plt.figure(figsize=(5, 5))
+        plt.barh(keys, values, color='skyblue')
+        plt.xlabel("Probabilité que le texte saisi appartienne à cet auteur")
+        plt.ylabel("Nom des auteurs")
+        plt.title("Prédiction du style de l'auteur")
+        st.pyplot(fig)
 
-    plt.barh(keys, values, color='skyblue')
-
-    plt.xlabel("Probabilité que le texte saisi appartienne à cet auteur")
-    plt.ylabel("Nom des auteurs")
-    plt.title("Prédiction du style de l'auteur")
-    st.pyplot(fig)
