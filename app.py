@@ -7,6 +7,8 @@ import pandas as pd
 import os
 import requests
 
+st.set_page_config(layout='wide')
+
 image_header = Image.open('Author_style.png')
 
 st.markdown(
