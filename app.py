@@ -8,8 +8,13 @@ import os
 import requests
 
 image_header = Image.open('Author_style.png')
-st.header('''Projet Style d'un auteur''')
-st.image(image_header, width=800)
+
+st.markdown(
+    f"<h1 style='text-align: center; color: black;'>Identification d'un auteur</h1>",
+    unsafe_allow_html=True)
+
+
+st.image(image_header, width=700, use_column_width='always')
 
 st.markdown(
     f"<h1 style='text-align: center; color: black;'>Qui est l'auteur qui aurait pu écrire ce paragraphe ?</h1>",
